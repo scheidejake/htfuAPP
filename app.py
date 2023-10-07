@@ -2,10 +2,10 @@ import streamlit as st
 import datetime
 import pandas as pd
 
-report = pd.DataFrame(columns=['name','rig','hole_number','location','depth'])
-
 st.write(datetime.datetime.now())
-
+new_row = pd.DataFrame()
+st.header("Daily Report")
+st.subheader("Fill in Report, click 'Submit' then click 'Download Report'")
 with st.form("daily_report"):
     name = st.selectbox(label="Name", options=["Jake", "Mark"])
     rig = st.selectbox(label="Rig", options=[1,2,3,4])
@@ -16,10 +16,10 @@ with st.form("daily_report"):
 
     submitted = st.form_submit_button()
     if submitted:
-        report = pd.DataFrame([[name, rig, hole_number, location, depth]])
-        st.write(report)
+        new_row = pd.DataFrame(data=[[name, rig, hole_number, location, depth]], columns=['name','rig','hole_number','location','depth'])
+        st.write(new_row)
 
-st.download_button(label="Download Report", data = report.to_csv())
+st.download_button(label="Download Report", data = new_row.to_csv())
 
 
 
