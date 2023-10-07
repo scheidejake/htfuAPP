@@ -2,7 +2,7 @@ import streamlit as st
 import datetime
 import pandas as pd
 
-report = pd.DataFrame()
+report = pd.DataFrame(columns=['name','rig','hole_number','location','depth'])
 
 st.write(datetime.datetime.now())
 
